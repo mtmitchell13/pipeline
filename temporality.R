@@ -26,7 +26,9 @@ temporize <- function(newdata,
                 newdata$hash[i] <- digest(sapply(newdata[i, c(identifier, track_values)], 
                                                  as.character), 
                                           algo = hash_method, 
-                                          serialize = FALSE)
+                                          serialize = TRUE,
+                                          ascii = TRUE,
+                                          seed = 13)
         }
         
         ## apply hash to existing data
@@ -34,7 +36,9 @@ temporize <- function(newdata,
                 existdata$hash[j] <- digest(sapply(existdata[j, c(identifier, track_values)],
                                                    as.character), 
                                             algo = hash_method, 
-                                            serialize = FALSE)
+                                            serialize = TRUE,
+                                            ascii = TRUE,
+                                            seed = 13)
         }
         
         ## update records where tracked values have not changed
